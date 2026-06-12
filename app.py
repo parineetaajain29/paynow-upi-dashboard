@@ -27,10 +27,10 @@ PLOT_LAYOUT = dict(
     font_color="#444",
     margin=dict(l=10, r=10, t=30, b=10),
     xaxis=dict(showgrid=False, tickfont_size=11),
-    yaxis=dict(gridcolor="#ebebeb", tickfont_size=11),
     legend=dict(font_size=11, bgcolor="rgba(0,0,0,0)"),
     hoverlabel=dict(bgcolor="white", font_size=12),
 )
+Y_DEFAULT = dict(gridcolor="#ebebeb", tickfont_size=11)
 
 # ── data ──────────────────────────────────────────────────────────────────────
 YEARS = [2019, 2020, 2021, 2022, 2023, 2024]
@@ -190,8 +190,8 @@ with tabs[0]:
         marker=dict(size=7, color=C_PURPLE),
         fill="tozeroy", fillcolor="rgba(136,132,200,0.07)",
     ))
-    fig_eff.update_layout(**PLOT_LAYOUT, height=240, yaxis_range=[0, 1],
-                          showlegend=False)
+    fig_eff.update_layout(**PLOT_LAYOUT, height=240, showlegend=False,
+                          yaxis=dict(range=[0, 1], **Y_DEFAULT))
     st.plotly_chart(fig_eff, use_container_width=True)
 
     c1, c2 = st.columns(2)
@@ -204,8 +204,7 @@ with tabs[0]:
             marker_color=bar_colors, marker_cornerradius=4,
         ))
         fig_cost.update_layout(**PLOT_LAYOUT, height=220, showlegend=False,
-                               yaxis=dict(range=[0, 8], ticksuffix="%",
-                                          gridcolor="#ebebeb", tickfont_size=11))
+                               yaxis=dict(range=[0, 8], ticksuffix="%", **Y_DEFAULT))
         st.plotly_chart(fig_cost, use_container_width=True)
 
     with c2:
@@ -218,7 +217,7 @@ with tabs[0]:
         fig_ti.add_trace(go.Scatter(x=df["Year"], y=df["Interop"],
             name="Interoperability", line=dict(color=C_AMBER, width=2, dash="dot"),
             mode="lines+markers", marker_size=5))
-        fig_ti.update_layout(**PLOT_LAYOUT, height=220, yaxis_range=[0, 1])
+        fig_ti.update_layout(**PLOT_LAYOUT, height=220, yaxis=dict(range=[0, 1], **Y_DEFAULT))
         st.plotly_chart(fig_ti, use_container_width=True)
 
 # ════════════════════════════════════════════════════════════════════════
@@ -244,7 +243,7 @@ with tabs[1]:
             line=dict(color=col, width=2, dash=dash),
             mode="lines+markers", marker_size=5,
         ))
-    fig_all.update_layout(**PLOT_LAYOUT, height=350)
+    fig_all.update_layout(**PLOT_LAYOUT, height=350, yaxis=Y_DEFAULT)
     st.plotly_chart(fig_all, use_container_width=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
@@ -258,7 +257,7 @@ with tabs[1]:
         textfont=dict(size=11, color="#888"),
     ))
     fig_upi.update_layout(**PLOT_LAYOUT, height=250, showlegend=False,
-                          yaxis=dict(ticksuffix="B", gridcolor="#ebebeb", tickfont_size=11))
+                          yaxis=dict(ticksuffix="B", **Y_DEFAULT))
     st.plotly_chart(fig_upi, use_container_width=True)
 
 # ════════════════════════════════════════════════════════════════════════
@@ -308,7 +307,7 @@ with tabs[2]:
     fig_decomp.add_trace(go.Bar(name="PayNow-UPI", x=COST_CATS, y=COST_PAYNOW,
                                 marker_color=C_TEAL, marker_cornerradius=3))
     fig_decomp.update_layout(**PLOT_LAYOUT, height=280, barmode="group",
-                              yaxis=dict(ticksuffix="%", gridcolor="#ebebeb", tickfont_size=11))
+                             yaxis=dict(ticksuffix="%", **Y_DEFAULT))
     st.plotly_chart(fig_decomp, use_container_width=True)
 
 # ════════════════════════════════════════════════════════════════════════
@@ -346,7 +345,7 @@ with tabs[3]:
         textfont=dict(color="white", size=11),
     ))
     fig_r2.update_layout(**PLOT_LAYOUT, height=240, showlegend=False,
-                         xaxis=dict(range=[0.75, 1.01], gridcolor="#ebebeb", tickfont_size=11),
+                         xaxis=dict(range=[0.75, 1.01], **Y_DEFAULT),
                          yaxis=dict(showgrid=False, tickfont_size=12))
     st.plotly_chart(fig_r2, use_container_width=True)
 
