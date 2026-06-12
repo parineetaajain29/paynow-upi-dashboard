@@ -442,9 +442,9 @@ with tabs[2]:
             x=["SWIFT total","Corresp. fees","FX spread","KYC/AML","Reconciliation","PayNow-UPI"],
             y=[6.50,-2.95,-0.975,-0.425,-0.35,0],
             connector=dict(line=dict(color=BORDER2)),
-            decreasing=dict(marker=dict(color=GREEN, cornerradius=5)),
-            increasing=dict(marker=dict(color=CORAL, cornerradius=5)),
-            totals=dict(marker=dict(color=PURPLE, cornerradius=5)),
+            decreasing=dict(marker=dict(color=GREEN)),
+            increasing=dict(marker=dict(color=CORAL)),
+            totals=dict(marker=dict(color=PURPLE)),
             hovertemplate="%{x}: %{y:.3f}%<extra></extra>"))
         l11 = base(320); l11["yaxis"]["ticksuffix"]="%"
         l11["title"]=dict(text="Cost waterfall: SWIFT → PayNow-UPI",font=dict(size=13,color=T2),x=0.01)
